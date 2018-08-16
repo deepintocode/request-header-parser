@@ -7,6 +7,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/whoami', (req, res) => {
   let ip = req.ip;
+  // Checks if IPv6 or IPv4. If IPv4, it strips the prefix.
   if (ip.substr(0, 7) == "::ffff:") {
     ip = ip.substr(7)
   }
@@ -17,4 +18,4 @@ app.get('/api/whoami', (req, res) => {
   });
 });
 
-app.listen(process.env.PORT | 3000, () => console.log('The server is listening at port 3000'));
+app.listen(process.env.PORT || 3000, () => console.log('The server is listening at port 3000'));
